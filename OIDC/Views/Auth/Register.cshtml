@@ -1,0 +1,28 @@
+﻿@model RegisterViewModel
+<h1>Login page</h1>
+
+<form asp-controller="Auth" asp-action="Register" method="post">
+    <div asp-validation-summary="All"></div>
+    <input type="hidden" asp-for="ReturnUrl" />
+    <div class="form-group">
+        <label class="col-form-label">
+            User Name
+        </label>
+        <input asp-for="UserName" class="form-control" />
+        <span asp-validation-for="UserName"> </span>
+    </div>
+    <div class="form-group">
+        <label class="col-form-label">Password</label>
+        <input asp-for="Password" class="form-control" />
+        <span asp-validation-for="Password"></span>
+    </div>
+    <div class="form-group">
+        <label class="col-form-label">Confirm Password</label>
+        <input asp-for="ConfirmPassword" class="form-control" />
+        <span asp-validation-for="ConfirmPassword"></span>
+    </div>
+    <div>
+        <input type="submit" value="SignUp" class="btn btn-primary" />
+    </div>
+    <a asp-controller="Auth" asp-action="Login" asp-route-returnurl="@Model.ReturnUrl">SignIn</a>
+</form>
