@@ -24,26 +24,27 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy Policy</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark float-lg-right" asp-area="" asp-controller="Home" asp-action="AuthData">AuthData</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark float-lg-right" asp-area="" asp-controller="Home" asp-action="GetAdminData">AdminData</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark float-lg-right" asp-area="" asp-controller="Home" asp-action="GetOtherData">OtherData</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark float-lg-right" asp-area="" asp-controller="Home" asp-action="GetRefresh">GetRefresh</a>
+                        </li>
+                         <li class="nav-item">
+                                <a class="nav-link text-dark float-lg-right" asp-area="" asp-controller="Home" asp-action="Authorize">Authorize</a>
+                            </li>
+                       
+
                         @if (User.Identity.IsAuthenticated)
                         {
 
-                            <li class="nav-item">
-                                <a class="nav-link text-dark float-lg-right" asp-area="" asp-controller="Home" asp-action="AuthData">AuthData</a>
-                            </li>
-                             <li class="nav-item">
-                                <a class="nav-link text-dark float-lg-right" asp-area="" asp-controller="Home" asp-action="GetAdminData">AdminData</a>
-                            </li>
-                             <li class="nav-item">
-                                <a class="nav-link text-dark float-lg-right" asp-area="" asp-controller="Home" asp-action="GetOtherData">OtherData</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link text-dark float-lg-right" asp-area="" asp-controller="Home" asp-action="GetRefresh">GetRefresh</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link text-dark float-lg-right">Name: @User.Claims.FirstOrDefault(c => c.Type == "name")</a>
-                            </li>
 
                             <li class="nav-item">
                                 <a class="nav-link text-dark float-lg-right" asp-area="" asp-controller="Home" asp-action="Logout">LogOut</a>
@@ -54,6 +55,7 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark float-lg-right" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
                             </li>
+                           
                         }
 
                     </ul>

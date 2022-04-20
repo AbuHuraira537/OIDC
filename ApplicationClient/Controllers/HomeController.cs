@@ -55,6 +55,14 @@ namespace ApplicationClient.Controllers
             var result = await GetResourceApiData(accessToken);
             return View(new ResponseViewModel() { Value = result });
         }
+        public async Task<IActionResult> Authorize()
+        {
+            var accessToken = await HttpContext.GetTokenAsync("access_token");
+            var result = await AuthorizeData(accessToken);
+            int code = (int)result.StatusCode;
+            ViewBag.code = code;
+            return View();
+        }
         [Authorize]
         public async Task<IActionResult> GetRefresh()
         {
@@ -98,10 +106,22 @@ namespace ApplicationClient.Controllers
             apiClient.SetBearerToken(accessToken);
 
             var result = await apiClient.GetAsync($"https://localhost:44324/api/{endpoint}");
+            if (!result.IsSuccessStatusCode)
+            {
+                return result.StatusCode.ToString();
+            }
             var content = await result.Content.ReadAsStringAsync();
             return content;
         }
+        private async Task<HttpResponseMessage> AuthorizeData(string accessToken, string endpoint = "authorize")
+        {
+            var apiClient = _clientFactory.CreateClient();
+            apiClient.SetBearerToken(accessToken);
 
+            var result = await apiClient.GetAsync($"https://localhost:44324/api/{endpoint}");
+            var content = await result.Content.ReadAsStringAsync();
+            return result;
+        }
         private async Task GetRefreshTokenAsync()
         {
             var serverClient = _clientFactory.CreateClient();

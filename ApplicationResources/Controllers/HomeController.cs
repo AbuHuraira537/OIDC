@@ -18,6 +18,12 @@ namespace ApplicationResources.Controllers
         {
             _logger = logger;
         }
+        [Route("api/authorize")]
+        [Authorize]
+        public string GetAuthorizeData()
+        {
+            return "Authorize Data";
+        }
         [Route("api/other")]
         [Authorize(Policy  ="Other")]
         public string GetOtherRoleData()
@@ -25,12 +31,7 @@ namespace ApplicationResources.Controllers
             return "Other Role Data";
         }
         
-        [Route("api/authorize")]
-        [Authorize]
-        public string GetAuthorizeData()
-        {
-            return "Authorize Data";
-        }
+        
         [Route("api/admin")]
         [Authorize(Policy = "Admin")]
         public string GetAdminData()
